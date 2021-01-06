@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using FBAI.Data;
-using FBAI.Data.Entity.Account;
-using FBAI.Data.Entity.EmployeeAttachment;
+using BlogSoft.Data;
+using BlogSoft.Models;
 using Microsoft.AspNetCore.Mvc;
-using FBAI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
-namespace FBAI.Controllers
+namespace BlogSoft.Controllers
 {
 
     [Authorize]

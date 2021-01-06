@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FBAI.Data;
-using FBAI.Data.Entity;
-using FBAI.Service.Interface;
+using BlogSoft.Data;
+using BlogSoft.Data.Entity;
+using BlogSoft.Service.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace FBAI.Service
+namespace BlogSoft.Service
 {
     public class UserService : IUserService
     {
@@ -31,7 +31,7 @@ namespace FBAI.Service
         public async Task<ApplicationUser> GetUserInfoByUserEmail(string email)
         {
 
-            var user = await _context.Users.Where(x => x.Email == email).Include(x=>x.Gender).FirstOrDefaultAsync();
+            var user = await _context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
 
            return user;
 

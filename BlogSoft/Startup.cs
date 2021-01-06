@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogSoft.Data;
+using BlogSoft.Data.Entity;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -37,12 +44,12 @@ namespace BlogSoft
 
             #region ERP Database Settings
 
-            services.AddDbContext<FBAIDbContext>(options =>
+            services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("FBAIDbConnection")));
+                    Configuration.GetConnectionString("BlogDbConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<FBAIDbContext>()
+                .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
             #endregion
 
@@ -86,48 +93,7 @@ namespace BlogSoft
 
             #region Service
 
-            services.AddScoped<IEmployeeCodeService, EmployeeCodeService>();
-            services.AddScoped<IUserService, UserService>();
-
-            #endregion
-
-            #region MasterData
-
-            services.AddScoped<IGenderService, GenderService>();
-            services.AddScoped<ICostingTypeService, CostingTypeService>();
-            services.AddScoped<IMonthService, MonthService>();
-            services.AddScoped<IQtyMeasurementService, QtyMeasurementService>();
-            services.AddScoped<IYearService, YearService>();
-            services.AddScoped<IAddressService, AddressService>();
-            services.AddScoped<IStoreUserMoboleService, StoreUserMoboleService>();
-            services.AddScoped<IDipositeMoneyForService, DipositeMoneyForService>();
-
-            #endregion
-
-            #region Employee Attachment
-
-            services.AddScoped<IEmployeeAttachmentMasterService, EmployeeAttachmentMasterService>();
-            services.AddScoped<IEmployeeAttachmentDetailsService, EmployeeAttachmentDetailsService>();
-
-            #endregion
-
-            #region Account
-
-            services.AddScoped<IRegularCostingMasterService, RegularCostingMasterService>();
-            services.AddScoped<IRegularCostingDetailsService, RegularCostingDetailsService>();
-            services.AddScoped<ISalaryService, SalaryService>();
-            services.AddScoped<IRegularCostingReportService, RegularCostingReportService>();
-            services.AddScoped<ISalaryReportService, SalaryReportService>();
-            services.AddScoped<IBoucherService, BoucherService>();
-            services.AddScoped<IFileSaveService, FileSaveService>();
-
-            #endregion
-
-            #region Attachment
-
-            services.AddScoped<IEmployeeCodeService, EmployeeCodeService>();
-            services.AddScoped<IEmployeeAttachmentMasterService, EmployeeAttachmentMasterService>();
-            services.AddScoped<IEmployeeAttachmentDetailsService, EmployeeAttachmentDetailsService>();
+           
 
             #endregion
 
@@ -176,8 +142,8 @@ namespace BlogSoft
 
                 routes.MapAreaRoute(
                     name: "default",
-                    areaName: "ForeignBanglaWebsite",
-                    template: "{controller=ForeignBanglaWebsite}/{action=Index}/{id?}");
+                    areaName: "BlogWebsite",
+                    template: "{controller=BlogWebsite}/{action=Index}/{id?}");
             });
         }
     }

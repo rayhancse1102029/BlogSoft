@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FBAI.Data.Entity
+namespace BlogSoft.Data.Entity
 {
     public class Base
     {

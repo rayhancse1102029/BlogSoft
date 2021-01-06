@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FBAI.Data.Entity;
+using BlogSoft.Data.Entity;
 
 
-namespace FBAI.Service.Interface
+namespace BlogSoft.Service.Interface
 {
     public interface IUserService
     {

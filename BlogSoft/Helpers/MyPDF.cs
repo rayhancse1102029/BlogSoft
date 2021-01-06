@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using DinkToPdf;
 using DinkToPdf.Contracts;
 
-namespace FBAI.Helpers
+namespace BlogSoft.Helpers
 {
     public class MyPDF
     {

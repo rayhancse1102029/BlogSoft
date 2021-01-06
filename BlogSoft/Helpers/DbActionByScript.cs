@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FBAI.Helpers
+namespace BlogSoft.Helpers
 {
     public static class DbActionByScript
     {
