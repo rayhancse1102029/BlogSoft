@@ -254,9 +254,7 @@
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
 
-        <a style="text-decoration: none;" asp-controller="Home" asp-action="Index">
-            <img src="~/images/FBAI.jpg" height="70" width="250" />
-        </a>
+        <a style="text-decoration: none;  width:250px" asp-controller="Home" asp-action="Index"></a>
 
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -407,7 +405,7 @@
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.Name</span>
-                    <img class="img-profile rounded-circle" src="~/@Context.Session.GetString("profileImgLink")">
+                    <img class="img-profile rounded-circle" src="~/images/user.png">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -439,61 +437,8 @@
     <div id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <!-- Sidebar -->
-            <div id="menu">
-                <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-                    <!-- Nav Item - Dashboard -->
-                    <li class="nav-item active">
-                        <a asp-controller="Home" asp-action="Index" class="nav-link">
-                            <i class="fas fa-fw fa-tachometer-alt" style="font-size: 25px"></i>
-                            <span style="font-weight: bold; font-size: 25px">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <hr class="sidebar-divider">
-
-                    <!-- Nav Item - Pages Collapse Menu -->
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseMasterData" aria-expanded="true" aria-controls="collapseTwo">
-                            <i class="fas fa-cogs" style="color: white"></i>
-                            <span>Master Data</span>
-                        </a>
-                        <div id="collapseMasterData" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                            <div class=" py-2 collapse-inner rounded" style="background: white;">
-                                <a class="collapse-item" asp-area="MasterData" asp-controller="Gender" asp-action="Index">Gender</a>
-                                <a class="collapse-item" asp-area="MasterData" asp-controller="Year" asp-action="Index">Year</a>
-                                <a class="collapse-item" asp-area="MasterData" asp-controller="Month" asp-action="Index">Month</a>
-                                <a class="collapse-item" asp-area="MasterData" asp-controller="DipositeType" asp-action="Index">Diposite Type</a>
-                                <a class="collapse-item" asp-area="MasterData" asp-controller="CoastingType" asp-action="Index">Costing Type</a>
-                                <a class="collapse-item" asp-area="MasterData" asp-controller="QtyMeasurement" asp-action="Index">Measurement</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- Divider -->
-                    <hr class="sidebar-divider d-none d-md-block">
-                    <!-- Sidebar Toggler (Sidebar) -->
-                    <div class="text-center d-none d-md-inline">
-                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                    </div>
-                </ul>
-            </div>
-
-            <!-- End of Sidebar -->
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-                <!-- Main Content -->
-                <div id="content">
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid" style="padding: 0 8px;">
-                        @RenderBody()
-                    </div>
-                    <!--container-fluid -->
-                </div>
-                <!-- End of Main Content -->
-                <!-- Footer -->
-                <!-- End of Footer -->
-
+            <div class="container-fluid" style="padding: 0 8px;">
+                @RenderBody()
             </div>
             <!-- End of Content Wrapper -->
 
@@ -503,7 +448,7 @@
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
                     <h6 class="font-weight-bold" id="developer_info_id">
-                        <a href="http://www.rayhan-bd.com/" target="_blank" style="text-decoration: none;">Developed By @@Rayhan </a>&copy; 2020
+                        <a href="http://www.rayhan-bd.com/" target="_blank" style="text-decoration: none;">Developed By @@Rayhan </a>&copy; 2021
                     </h6>
                 </div>
             </div>

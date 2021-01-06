@@ -16,11 +16,10 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-    <Folder Include="Areas\Blog\Controllers\" />
-    <Folder Include="Areas\Blog\Data\" />
-    <Folder Include="Areas\Blog\Models\" />
-    <Folder Include="Areas\Blog\Views\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\BlogWebsite\Data\" />
+    <Folder Include="wwwroot\application\" />
     <Folder Include="wwwroot\pdf\" />
     <Folder Include="wwwroot\Upload\" />
   </ItemGroup>

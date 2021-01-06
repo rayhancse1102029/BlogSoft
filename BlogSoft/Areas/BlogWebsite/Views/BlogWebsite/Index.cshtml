@@ -1,0 +1,159 @@
+﻿@model BlogViewModel
+@{
+    
+}
+
+<br/>
+
+<div class="container">
+    @*<a class="btn btn-success" asp-area="BlogWebsite" asp-controller="BlogWebsite" asp-action="CreateBlog">Create New Blog</a>*@
+    <a class="btn btn-success float-right" asp-area="Admin" asp-controller="Admin" asp-action="Index">Go To Admin Panel</a>
+    <br/>
+    <br/>
+    
+    <h3 class="font-weight-bold">Blogs</h3>
+    <hr/>
+    
+    <section>
+        @foreach (var blog in Model.BlogViewModels)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2" style="text-align: center">
+                            <img src="~/images/user.png" class="img-profile rounded-circle" style="height: 50px; width: 50px;" />
+                            <p style="text-align: center">@blog?.BlogPost?.applicationUser?.fullName</p>
+                        </div>
+                        <div class="col-xl-11 col-lg-11 col-md102 col-sm-10" style="padding-left: 30px;">
+                            <h5 class="font-weight-bold">@blog?.BlogPost?.title</h5>
+                            <p>@blog?.BlogPost?.createdAt?.ToString("dd-MMM-yyyy")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>@blog?.BlogPost?.description</p>
+                </div>
+                <div class="card-footer" style="background: white">
+                    <h5 class="font-weight-bold">Comments</h5>
+                  <hr/>
+                    
+                  <div class="container">
+                      <form id="myForm_@blog?.BlogPost?.Id">
+
+                          <div class="form-group row">
+                              <label for="name" class="col-md-2 col-form-label">Comments </label>
+                              <div class="col-md-6">
+                                  <textarea rows="5" class="form-control" id="comment" name="comment"></textarea>
+                                  <input type="hidden" name="blogPostId" value="@blog?.BlogPost?.Id"/>
+                                  <input type="hidden" name="id" value="0"/>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-8">
+                                  <button type="button" onclick="commentSubmitFun(@blog?.BlogPost?.Id)" class="btn btn-success" style="float:right; margin-top:5px;">Comment</button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+
+                  <br/>
+                    @foreach (var comment in blog.Comments)
+                    {
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                                <img src="~/images/user.png" class="img-profile rounded-circle" style="height: 40px; width: 40px;" />
+                                <p>@comment?.applicationUser?.fullName</p>
+                                <p>@comment?.createdAt?.ToString("dd-MMM-yyyy")</p>
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6" style="padding-left: 5px;">
+                                <p>@comment?.commentText</p>
+                                <br/>
+                                <div class=" form-group row">
+                                    <button type="button" onclick="likeBtnFun(@comment?.Id)"><i class="far fa-thumbs-up"></i></button>
+                                    <button type="button" onclick="disLikeBtnFun(@comment?.Id)"><i class="far fa-thumbs-down"></i></button>
+                                    <p class="ml-2">likes: @comment?.likes</p>
+                                    <p class="ml-4">disLikes: @comment?.disLikes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                    }
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+        }
+    </section>
+
+</div>
+<br/>
+<br/>
+
+@section Scripts{ 
+    <script>
+
+        function commentSubmitFun(id) {
+
+            var myData = $("#myForm_"+id).serialize();
+
+            var des = $('#comment').val();
+
+            if (comment == null || comment == '') {
+
+                swal({
+                    title: 'Invalid Input', text: 'Please enter comment!', type: 'warning', confirmButtonColor: '#3085d6', confirmButtonText: 'OK!'
+                });
+
+                return false;
+            }
+
+            $.ajax({
+                url: "/BlogWebsite/BlogWebsite/Comment",
+                type: "post",
+                data: myData,
+                success: function (response) {
+
+                    if (response == "success") {
+                        swal({
+                            title: 'Success!', text: 'Thanks For Your Comment!', type: 'success', showCancelButton: false, confirmButtonColor: '#3085d6', confirmButtonText: 'Ok!'
+                        }).then(function () {
+                            location.reload();
+                        });
+
+                    }
+                    else {
+                        swal('Warning!', 'Unable to save!', 'warning');
+                    }
+
+                }
+            });
+        }
+        function likeBtnFun(id) {
+            $.ajax({
+                url: "/BlogWebsite/BlogWebsite/like/" + id,
+                type: "get",
+                success: function (response) {
+
+                    location.reload();
+
+                }
+            });
+        }
+
+        function disLikeBtnFun(id) {
+            $.ajax({
+                url: "/BlogWebsite/BlogWebsite/disLike/" + id,
+                type: "get",
+                success: function (response) {
+
+                    location.reload();
+
+                }
+            });
+        }
+
+    </script>
+}
+
+

@@ -1,0 +1,116 @@
+﻿
+@model BlogSoft.PaginatedList<BlogViewModel>
+
+
+    @{
+
+        int i = 1;
+        int id = 1;
+        int cp = Model.PageIndex;
+        int tp = Model.TotalPages;
+        i = (cp - 1) * 5 + 1;
+    }
+
+    <style>
+        .admin {
+            margin-top: 50px;
+            margin-bottom: 200px;
+        }
+
+    </style>
+
+    <div class="container">
+        <section class="admin">
+            <div>
+                <form asp-action="Index" method="get" class="form-inline">
+                    <div class="form-group">
+                        <input id="myInput" type="text" name="srctext" class="form-control" value="@ViewBag.srctext" placeholder=" Search in word...." />
+                        <input id="src-btn" type="submit" class="btn btn-sm btn-success ml-1" value="Search" />
+                    </div>
+
+                </form>
+            </div>
+            <br />
+            <div>
+                <table class="table table-bordered table-striped" style="text-align: center">
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr style="font-weight: bold;color:dodgerblue; background: darkorange">
+                                <td>@id</td>
+                                <td style="font-weight: bold; font-size: 16px;">@item?.BlogPost?.title</td>
+                                <td style="font-weight: bold; font-size: 16px;">@item?.BlogPost?.applicationUser?.fullName</td>
+                                <td style="font-weight: bold; font-size: 16px;">@item?.BlogPost?.createdAt?.ToString("dd-MMM-yyy")</td>
+                                <td style="font-weight: bold; font-size: 16px;">@item?.Comments?.Count() Comments</td>
+                            </tr>
+
+                            if (item.Comments.Count() > 0)
+                            {
+
+                                @foreach (var comment in item.Comments)
+                                {
+                                    id++;
+                                    <tr>
+                                        <td>@id</td>
+                                        <td>@comment?.commentText</td>
+                                        <td>@comment?.applicationUser?.fullName</td>
+                                        <td>@comment?.createdAt?.ToString("dd-MMM-yyy")</td>
+                                        <td>Likes (@comment?.likes) Dislikes (@comment?.disLikes) </td>
+                                    </tr>
+                                    id++;
+                                }
+
+                            }
+                            else
+                            {
+                                id++;
+                            }
+
+                        }
+                    </tbody>
+                </table>
+
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewBag.sortOrder"
+                   asp-route-page=@(Model.PageIndex - 1)
+                   class="btn btn-info @prevDisabled">Previous</a>
+
+                @{
+                    var start = cp - 3;
+                    var end = cp + 3;
+                    for (int j = start; j <= end; j++)
+                    {
+                        if (j > 0 && j <= tp)
+                        {
+                            if (cp == j)
+                            {
+                                <a asp-action="Index"
+                                   asp-route-sortOrder="@ViewBag.sortOrder"
+                                   asp-route-page=@j
+                                   class="btn btn-danger @nextDisabled">@j</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index"
+                                   asp-route-sortOrder="@ViewBag.sortOrder"
+                                   asp-route-page=@j
+                                   class="btn btn-info @nextDisabled">@j</a>
+                            }
+                        }
+                    }
+                }
+
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewBag.sortOrder"
+                   asp-route-page=@(Model.PageIndex + 1)
+                   class="btn btn-info @nextDisabled">
+                    Next
+                </a>
+
+            </div>
+        </section>
+    </div>

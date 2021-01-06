@@ -135,7 +135,7 @@ namespace BlogSoft.Controllers
                     {
                         _logger.LogInformation("User logged in.");
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "BlogWebsite", new{ area= "BlogWebsite" });
 
                     }
                     else

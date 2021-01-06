@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogSoft.Data;
 using BlogSoft.Data.Entity;
+using BlogSoft.Service;
+using BlogSoft.Service.Interface;
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -93,7 +95,7 @@ namespace BlogSoft
 
             #region Service
 
-           
+            services.AddScoped<IBlogService, BlogService>();
 
             #endregion
 

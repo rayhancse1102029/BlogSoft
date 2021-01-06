@@ -13,13 +13,13 @@ namespace BlogSoft.Helpers
     {
         private readonly string rootPath;
         private readonly IConverter _converter;
-        //private readonly string baseUrl;
+        private readonly string baseUrl;
 
         public MyPDF(IHostingEnvironment hostingEnvironment, IConverter converter)
         {
             this.rootPath = hostingEnvironment.ContentRootPath + "/wwwroot/pdf/";
             _converter = converter;
-            //this.baseUrl = "http://localhost:5000/";
+            this.baseUrl = "http://localhost:5873/";
         }
 
         public string GeneratePDF(out string fileName, string url)

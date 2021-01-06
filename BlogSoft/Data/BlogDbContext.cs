@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogSoft.Data.Entity;
+using BlogSoft.Data.Entity.Blog;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +19,13 @@ namespace BlogSoft.Data
         {
             this._httpContextAccessor = _httpContextAccessor;
         }
-        
 
+        #region Blogs
+
+        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
+        #endregion
 
         #region Settings Configs
         public override int SaveChanges()
