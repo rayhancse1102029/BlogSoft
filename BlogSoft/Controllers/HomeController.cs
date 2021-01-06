@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using FBAI.Data;
+using FBAI.Data.Entity.Account;
+using FBAI.Data.Entity.EmployeeAttachment;
 using Microsoft.AspNetCore.Mvc;
-using BlogSoft.Models;
+using FBAI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
-namespace BlogSoft.Controllers
+namespace FBAI.Controllers
 {
+
+    [Authorize]
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly BlogDbContext _context;
+
+        public HomeController(BlogDbContext _context)
+        {
+            this._context = _context;
+        }
+
+        public async Task<IActionResult> Index()
         {
             return View();
         }

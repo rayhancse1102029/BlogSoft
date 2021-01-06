@@ -1,6 +1,6 @@
 using System;
 
-namespace BlogSoft.Models
+namespace FBAI.Models
 {
     public class ErrorViewModel
     {
