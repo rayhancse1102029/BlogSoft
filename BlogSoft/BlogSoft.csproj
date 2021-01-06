@@ -20,7 +20,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\BlogWebsite\Data\" />
     <Folder Include="wwwroot\application\" />
-    <Folder Include="wwwroot\pdf\" />
+    <Folder Include="wwwroot\uploadPdf\" />
     <Folder Include="wwwroot\Upload\" />
   </ItemGroup>
 
